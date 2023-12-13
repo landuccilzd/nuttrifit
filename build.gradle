@@ -1,0 +1,47 @@
+plugins {
+	id 'java'
+	id 'war'
+	id 'org.springframework.boot' version '3.2.0'
+	id 'io.spring.dependency-management' version '1.1.4'
+}
+
+group = 'br.com.landucci'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	sourceCompatibility = '17'
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework:spring-webmvc:6.1.1'
+
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.thymeleaf:thymeleaf:2.0.11'
+	implementation 'org.thymeleaf:thymeleaf-spring4:3.0.15.RELEASE'
+	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity4:3.0.5.RELEASE'
+	compileOnly 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:1.2.8'
+
+	implementation 'org.apache.commons:commons-email:1.5'
+
+	compileOnly 'javax.servlet:javax.servlet-api:3.1.0'
+	compileOnly 'javax.servlet:servlet-api:2.5'
+	implementation 'javax.validation:validation-api:2.0.1.Final'
+
+
+	runtimeOnly 'com.mysql:mysql-connector-j'
+
+	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.security:spring-security-test'
+}
+tasks.named('test') {
+	useJUnitPlatform()
+}

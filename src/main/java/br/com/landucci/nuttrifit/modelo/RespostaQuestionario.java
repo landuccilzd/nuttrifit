@@ -1,0 +1,75 @@
+package br.com.landucci.nuttrifit.modelo;
+
+import jakarta.persistence.*;
+
+@Entity
+@Table(name="resposta_questionario")
+public class RespostaQuestionario {
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long id;
+	
+	@ManyToOne
+	@JoinColumn(name="questionario_id")
+	private Questionario questionario;
+	
+	@ManyToOne
+	@JoinColumn(name="pessoa_id")	
+	private Pessoa pessoa;
+	
+	@ManyToOne
+	@JoinColumn(name="questao_id")	
+	private Questao questao;
+	
+	public Long getId() {
+		return id;
+	}
+	public Questionario getQuestionario() {
+		return questionario;
+	}
+	public Pessoa getPessoa() {
+		return pessoa;
+	}
+	public Questao getQuestao() {
+		return questao;
+	}
+	
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public void setQuestionario(Questionario questionario) {
+		this.questionario = questionario;
+	}
+	public void setPessoa(Pessoa pessoa) {
+		this.pessoa = pessoa;
+	}
+	public void setQuestao(Questao questao) {
+		this.questao = questao;
+	}
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		RespostaQuestionario other = (RespostaQuestionario) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
+	}	
+}
